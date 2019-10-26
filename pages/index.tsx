@@ -1,6 +1,7 @@
 import React from "react";
 import { Box } from "../style";
 import styled from "styled-components";
+import { Page } from "../components/Page";
 
 const NavContainer = props => (
   <Box
@@ -19,7 +20,7 @@ const NavListItem = styled.li`
 
 const HomePage = () => {
   return (
-    <>
+    <Page title="mbfisher.com">
       <h1 style={{ textAlign: "center" }}>mbfisher.com</h1>
       <NavContainer>
         <ul style={{ paddingInlineStart: 0 }}>
@@ -49,7 +50,7 @@ const HomePage = () => {
           </NavListItem>
         </ul>
       </NavContainer>
-    </>
+    </Page>
   );
 };
 
