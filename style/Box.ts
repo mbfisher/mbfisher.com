@@ -7,8 +7,20 @@ import {
   typography,
   TypographyProps,
   border,
-  BorderProps
+  BorderProps,
+  color,
+  ColorProps
 } from "styled-system";
 
-export type BoxProps = LayoutProps & SpaceProps & TypographyProps & BorderProps;
-export const Box = styled.div<BoxProps>(layout, space, typography, border);
+export type BoxProps = LayoutProps &
+  SpaceProps &
+  TypographyProps &
+  BorderProps &
+  ColorProps;
+export const Box = styled.div<BoxProps>(
+  layout,
+  space,
+  typography,
+  border,
+  color
+);

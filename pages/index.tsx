@@ -1,7 +1,9 @@
+import { NextComponentType, NextPageContext } from "next";
 import React from "react";
-import { Box } from "../style";
-import styled from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
+import { typography, TypographyProps } from "styled-system";
 import { Page } from "../components/Page";
+import { Box, createTheme, PageTitle } from "../style";
 
 const NavContainer = props => (
   <Box
@@ -18,40 +20,42 @@ const NavListItem = styled.li`
   margin-bottom: 3rem;
 `;
 
-const HomePage = () => {
+const NavLink = styled.a<{ i: number } & TypographyProps>`
+  color: ${props => props.theme.colors[props.i]};
+  ${typography}
+`;
+
+interface HomePageProps {
+  theme: DefaultTheme;
+}
+
+const HomePage: NextComponentType<
+  NextPageContext,
+  HomePageProps,
+  HomePageProps
+> = ({ theme }) => {
   return (
-    <Page title="mbfisher.com">
-      <h1 style={{ textAlign: "center" }}>mbfisher.com</h1>
+    <Page title="mbfisher.com" theme={theme}>
       <NavContainer>
-        <ul style={{ paddingInlineStart: 0 }}>
+        <ul>
           <NavListItem>
-            <a
-              href="/jams"
-              style={{
-                color: "#FD6FFF",
-                fontSize: "2.5rem",
-                fontStyle: "italic"
-              }}
-            >
+            <NavLink i={1} href="/jams" fontSize="1.75em">
               Jams
-            </a>
+            </NavLink>
           </NavListItem>
           <NavListItem>
-            <a
-              href="/travel"
-              style={{
-                color: "#81FCED",
-                fontSize: "1.75rem",
-                textDecoration: "underline"
-              }}
-            >
+            <NavLink i={2} href="/travel" fontSize="1.25em" fontStyle="italic">
               Travel
-            </a>
+            </NavLink>
           </NavListItem>
         </ul>
       </NavContainer>
     </Page>
   );
 };
+
+HomePage.getInitialProps = () => ({
+  theme: createTheme()
+});
 
 export default HomePage;

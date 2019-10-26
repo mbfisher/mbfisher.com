@@ -1,47 +1,53 @@
 import fetch from "isomorphic-unfetch";
 import { NextComponentType, NextPageContext } from "next";
-import React, { HTMLProps } from "react";
-import { Jam } from "./api/jams";
-import { Box, BoxProps, PageTitle, Text } from "../style";
+import React from "react";
+import styled, { DefaultTheme } from "styled-components";
 import { Page } from "../components/Page";
+import { Box, createTheme, Text, random } from "../style";
+import { Anchor } from "../style/Link";
+import { Jam } from "./api/jams";
 
-const CardContainer: React.ComponentType<
-  BoxProps & Pick<HTMLProps<HTMLAnchorElement>, "href" | "target">
-> = props => <Box as="a" display="block" border="1px solid black" {...props} />;
+const CardContainer = styled(Anchor)`
+  display: block;
+  background-color: ${props => random(props.theme.colors)};
+  color: white;
+`;
 
-const JamCard: React.ComponentType<{ jam: Jam }> = ({ jam }) => (
-  <CardContainer href={jam.url} target="_blank">
-    <img src={jam.image} alt={`${jam.title} by ${jam.artist}`} width="100%" />
-    <Box padding="1rem">
-      <Text as="h3" mb="0.5rem">
-        {jam.title}
-      </Text>
-      <h5>{jam.artist}</h5>
-    </Box>
-  </CardContainer>
-);
+const JamCard: React.ComponentType<{ jam: Jam }> = ({ jam }) => {
+  return (
+    <CardContainer href={jam.url} target="_blank">
+      <img src={jam.image} alt={`${jam.title} by ${jam.artist}`} width="100%" />
+      <Box padding="1rem">
+        <Text as="h3" mb="0.5rem">
+          {jam.title}
+        </Text>
+        <Text as="h5">{jam.artist}</Text>
+      </Box>
+    </CardContainer>
+  );
+};
 
 interface JamsPageProps {
   jams: Jam[];
+  theme: DefaultTheme;
 }
 
 const JamsPage: NextComponentType<
   NextPageContext,
   JamsPageProps,
   JamsPageProps
-> = ({ jams }) => {
+> = ({ jams, theme }) => {
   console.log({ jams });
   return (
-    <Page title="Jams">
-      <PageTitle>Jams</PageTitle>
-      <Text textAlign="center">
+    <Page title="Jams" theme={theme}>
+      <Text textAlign="center" color={theme.colors[1]}>
         Inspired by{" "}
-        <a href="https://www.thisismyjam.com/about" target="_blank">
+        <Anchor href="https://www.thisismyjam.com/about" target="_blank">
           thisismyjam.com
-        </a>
+        </Anchor>
       </Text>
       <Box width={["100%", "50%", "33%"]} margin="0 auto">
-        {jams.map(jam => (
+        {jams.map((jam, i) => (
           <JamCard key={jam.url} jam={jam} />
         ))}
       </Box>
@@ -56,7 +62,8 @@ JamsPage.getInitialProps = async () => {
   const jams = await res.json();
 
   return {
-    jams
+    jams,
+    theme: createTheme()
   };
 };
 

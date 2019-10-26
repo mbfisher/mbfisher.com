@@ -1,6 +1,6 @@
-import React from "react";
 import App from "next/app";
-import { createGlobalStyle, ThemeProvider } from "styled-components";
+import React from "react";
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   h1,
@@ -15,9 +15,10 @@ const GlobalStyle = createGlobalStyle`
   body {
     background-color: #f8f8f8;
   }
+  ul {
+    padding-inline-start: 0;
+  }
 `;
-
-const theme = {};
 
 class MyApp extends App {
   // Only uncomment this method if you have blocking data requirements for
@@ -35,12 +36,10 @@ class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <ThemeProvider theme={theme}>
-        <>
-          <GlobalStyle />
-          <Component {...pageProps} />
-        </>
-      </ThemeProvider>
+      <>
+        <GlobalStyle />
+        <Component {...pageProps} />
+      </>
     );
   }
 }

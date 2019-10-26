@@ -1,10 +1,34 @@
-import React from "react";
+import * as CSS from "csstype";
 import styled from "styled-components";
-import { typography, space, TypographyProps, SpaceProps } from "styled-system";
+import {
+  color,
+  ColorProps,
+  ResponsiveValue,
+  space,
+  SpaceProps,
+  system,
+  TLengthStyledSystem,
+  typography,
+  TypographyProps
+} from "styled-system";
 
-export const Text = styled.p<TypographyProps & SpaceProps>(typography, space);
+type TextProps = TypographyProps &
+  SpaceProps &
+  ColorProps & {
+    textDecoration?: ResponsiveValue<
+      CSS.TextDecorationProperty<TLengthStyledSystem>
+    >;
+  };
 
-export const PageTitle = styled(Text).attrs({ as: "h1" })`
+export const Text = styled.p<TextProps>(
+  typography,
+  space,
+  color,
+  system({ textDecoration: true })
+);
+
+export const PageTitle = styled(Text).attrs({ as: "h1" })<ColorProps>`
   text-align: center;
-  margin-bottom: 1em;
+  margin-bottom: 1rem;
+  ${color}
 `;
