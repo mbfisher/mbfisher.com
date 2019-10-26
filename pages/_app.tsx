@@ -12,6 +12,9 @@ const GlobalStyle = createGlobalStyle`
     margin-block-start: 0;
     margin-block-end: 0;
   }
+  body {
+    background-color: #f8f8f8;
+  }
 `;
 
 const theme = {};
