@@ -1,0 +1,7 @@
+{
+  "name": "mbfisher",
+  "short_name": "mbf",
+  "start_url": "/",
+  "background_color": "#f8f8f8",
+  "display": "standalone"
+}
