@@ -4,7 +4,7 @@
   "background_color": "#f8f8f8",
   "display": "standalone",
   "start_url": "/",
-  "scope": "/",
+  "scope": "https://now.mbfisher.com",
   "icons": [
     {
       "src": "/apple-touch-icon-180x180.png",

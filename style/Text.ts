@@ -29,6 +29,6 @@ export const Text = styled.p<TextProps>(
 
 export const PageTitle = styled(Text).attrs({ as: "h1" })<ColorProps>`
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   ${color}
 `;

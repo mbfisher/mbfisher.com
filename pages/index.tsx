@@ -17,7 +17,7 @@ const NavContainer = props => (
 
 const NavListItem = styled.li`
   list-style: none;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 `;
 
 const NavLink = styled.a<{ i: number } & TypographyProps>`
