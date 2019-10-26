@@ -3,13 +3,14 @@ import { NextComponentType, NextPageContext } from "next";
 import React, { HTMLProps } from "react";
 import { Jam } from "./api/jams";
 import { Box, BoxProps, PageTitle, Text } from "../style";
+import { Page } from "../components/Page";
 
 const CardContainer: React.ComponentType<
-  BoxProps & Pick<HTMLProps<HTMLAnchorElement>, "href">
+  BoxProps & Pick<HTMLProps<HTMLAnchorElement>, "href" | "target">
 > = props => <Box as="a" display="block" border="1px solid black" {...props} />;
 
 const JamCard: React.ComponentType<{ jam: Jam }> = ({ jam }) => (
-  <CardContainer href={jam.url}>
+  <CardContainer href={jam.url} target="_blank">
     <img src={jam.image} alt={`${jam.title} by ${jam.artist}`} width="100%" />
     <Box padding="1rem">
       <Text as="h3" mb="0.5rem">
@@ -31,7 +32,7 @@ const JamsPage: NextComponentType<
 > = ({ jams }) => {
   console.log({ jams });
   return (
-    <>
+    <Page title="Jams">
       <PageTitle>Jams</PageTitle>
       <Text textAlign="center">
         Inspired by{" "}
@@ -44,12 +45,14 @@ const JamsPage: NextComponentType<
           <JamCard key={jam.url} jam={jam} />
         ))}
       </Box>
-    </>
+    </Page>
   );
 };
 
 JamsPage.getInitialProps = async () => {
-  const res = await fetch(`${process.env.API_BASE_URL}/api/jams`);
+  const url = `${process.env.API_BASE_URL}/api/jams`;
+  console.log("Fetching jams from", url);
+  const res = await fetch(url);
   const jams = await res.json();
 
   return {
