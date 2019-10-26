@@ -1,9 +1,9 @@
 import { NextComponentType, NextPageContext } from "next";
 import React from "react";
 import styled, { DefaultTheme } from "styled-components";
-import { typography, TypographyProps } from "styled-system";
 import { Page } from "../components/Page";
-import { Box, createTheme, PageTitle } from "../style";
+import { Box, createTheme } from "../style";
+import { Link } from "../style/Link";
 
 const NavContainer = props => (
   <Box
@@ -20,9 +20,8 @@ const NavListItem = styled.li`
   margin-bottom: 2rem;
 `;
 
-const NavLink = styled.a<{ i: number } & TypographyProps>`
-  color: ${props => props.theme.colors[props.i]};
-  ${typography}
+const NavLink = styled(Link)`
+  text-decoration: underline;
 `;
 
 interface HomePageProps {
@@ -39,12 +38,22 @@ const HomePage: NextComponentType<
       <NavContainer>
         <ul>
           <NavListItem>
-            <NavLink i={1} href="/jams" fontSize="1.75em">
+            <NavLink
+              href="/jams"
+              style={{ color: theme.colors[1], fontSize: "1.75em" }}
+            >
               Jams
             </NavLink>
           </NavListItem>
           <NavListItem>
-            <NavLink i={2} href="/travel" fontSize="1.25em" fontStyle="italic">
+            <NavLink
+              href="/travel"
+              style={{
+                color: theme.colors[2],
+                fontSize: "1.25em",
+                fontStyle: "italic"
+              }}
+            >
               Travel
             </NavLink>
           </NavListItem>

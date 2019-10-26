@@ -37,7 +37,6 @@ const JamsPage: NextComponentType<
   JamsPageProps,
   JamsPageProps
 > = ({ jams, theme }) => {
-  console.log({ jams });
   return (
     <Page title="Jams" theme={theme}>
       <Text textAlign="center" color={theme.colors[1]}>
@@ -56,7 +55,7 @@ const JamsPage: NextComponentType<
 };
 
 JamsPage.getInitialProps = async () => {
-  const url = `${process.env.API_BASE_URL}/api/jams`;
+  const url = `${process.env.API_BASE_URL || ""}/api/jams`;
   console.log("Fetching jams from", url);
   const res = await fetch(url);
   const jams = await res.json();

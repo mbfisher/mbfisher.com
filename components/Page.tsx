@@ -10,7 +10,7 @@ export const Page: React.ComponentType<{
   theme: DefaultTheme;
 }> = ({ title, theme, children }) => {
   const router = useRouter();
-  console.log({ theme });
+
   return (
     <>
       <Head>

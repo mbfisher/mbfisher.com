@@ -28,7 +28,7 @@ async function getTweets(): Promise<Status[]> {
   const url = `https://api.twitter.com/1.1/search/tweets.json?q=${encodeURIComponent(
     query
   )}`;
-  console.log({ url });
+
   const res = await fetch(url, {
     headers: {
       Authorization: `Bearer ${token}`
