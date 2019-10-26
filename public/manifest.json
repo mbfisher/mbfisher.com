@@ -3,8 +3,8 @@
   "short_name": "mbf",
   "background_color": "#f8f8f8",
   "display": "standalone",
-  "start_url": "/",
-  "scope": "https://now.mbfisher.com",
+  "start_url": "https://now.mbfisher.com/",
+  "scope": "/",
   "icons": [
     {
       "src": "/apple-touch-icon-180x180.png",
