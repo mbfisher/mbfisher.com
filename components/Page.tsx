@@ -9,7 +9,7 @@ export const Page: React.ComponentType<{ title: string }> = ({
     <Head>
       <title>{title} - mbfisher.com</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      {/* <link rel="manifest" href="/static/manifest.json" /> */}
+      <link rel="manifest" href="/manifest.json" />
       {/* <link rel="icon" href="/static/favicon.ico" /> */}
       {/* <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> */}
       <meta name="apple-mobile-web-app-title" content="mbfisher" />
