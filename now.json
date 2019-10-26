@@ -1,7 +1,11 @@
 {
   "version": 2,
   "routes": [
-    { "src": "/service-worker.js", "dest": "/_next/service-worker.js" }
+    {
+      "src": "/service-worker.js",
+      "dest": ".next/service-worker.js",
+      "headers": { "cache-control": "no-cache" }
+    }
   ],
   "env": {
     "API_BASE_URL": "https://now.mbfisher.com",
